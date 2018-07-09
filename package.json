@@ -1,0 +1,20 @@
+{
+  "name": "flashycertclient",
+  "version": "1.0.0",
+  "description": "Flash card practice tests for certification preparation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@ssh.github.com:443/rudenate3/flashyCertClient.git"
+  },
+  "keywords": [
+    "practice",
+    "tests",
+    "certs"
+  ],
+  "author": "rudenate3",
+  "license": "MIT"
+}
