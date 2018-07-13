@@ -1,0 +1,1 @@
+const {cardDiv} = require('./pageObject')
