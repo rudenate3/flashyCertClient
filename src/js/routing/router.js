@@ -7,6 +7,9 @@ export class Router {
   }
 
   changeRoute(newRoute) {
-    PageObject.cardDiv.innerHTML = Routes[newRoute]
+    this.activeRoute = null
+    const componentToLoad = Routes[newRoute]
+    this.activeRoute = new componentToLoad(PageObject.cardDiv)
+    this.activeRoute.render()
   }
 }
