@@ -1,5 +1,7 @@
+import { HomeComponent } from '../components/home.component'
+
 export const Routes = {
-  home: 'HomeComponent',
+  home: HomeComponent,
   login: 'LoginComponent',
   registration: 'RegistrationComponent'
 }
