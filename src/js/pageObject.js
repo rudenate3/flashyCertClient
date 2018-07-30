@@ -1,3 +1,3 @@
 export const PageObject = {
-  cardDiv: document.querySelector('.card')
+  cardDiv: document.querySelector('#card')
 }
