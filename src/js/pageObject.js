@@ -1,3 +1,3 @@
-module.exports = {
+export const PageObject = {
   cardDiv: document.querySelector('.card')
 }
