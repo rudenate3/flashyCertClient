@@ -1,4 +1,6 @@
 import { State } from '../state'
+import { Register } from '../services/auth.service'
+import { getFormInputs } from '../lib/getFormInputs';
 
 export class RegistrationComponent {
   constructor(container) {
@@ -28,5 +30,13 @@ export class RegistrationComponent {
 
   addEventListeners(){
     document.querySelector('#back').addEventListener('click', () => State.router.changeRoute('home'))
+    document.querySelector('#register-form').addEventListener('submit', (event) => {
+      event.preventDefault()
+      const data = getFormInputs(event.target)
+      Register(data)
+      .then(response => {
+        console.log(response) //TODO handle response
+      })
+    })
   }
 }
