@@ -27,16 +27,19 @@ export class LoginComponent {
   }
 
   addEventListeners() {
-    document
-      .querySelector('#back')
-      .addEventListener('click', () => State.router.changeRoute('home'))
-    document.querySelector('#login-form').addEventListener('submit', event => {
-      event.preventDefault()
-      const data = getFormInputs(event.target)
-      Login(data).then(response => {
-        console.log(response) //TODO handle response
-        State['token'] = response.token // TODO handle error scenario
-      })
-    })
+    document.querySelector('#back').addEventListener('click', this.goHome)
+    document.querySelector('#login-form').addEventListener('submit', this.onLogin)
+  }
+
+  goHome() {
+    State.router.changeRoute('home')
+  }
+
+  async onLogin(event) {
+    event.preventDefault()
+    const data = getFormInputs(event.target)
+    const response = await Login(data)
+    console.log(response) //TODO handle response
+    State['token'] = response.token // TODO handle error scenario
   }
 }
