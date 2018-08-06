@@ -15,6 +15,7 @@ export class LoginComponent {
   markup() {
     return `
       <h1>Login</h1>
+      <span id="messages"></span>
       <form id="login-form">
         <label for="email">Email</label>
         <input type="text" id="email">
@@ -39,7 +40,11 @@ export class LoginComponent {
     event.preventDefault()
     const data = getFormInputs(event.target)
     const response = await Login(data)
-    console.log(response) //TODO handle response
-    State['token'] = response.token // TODO handle error scenario
+    if (!response.success) {
+      document.querySelector('#messages').innerHTML = response.error
+      return
+    }
+    State['token'] = response.token
+    State.router.changeRoute('dashboard')
   }
 }
