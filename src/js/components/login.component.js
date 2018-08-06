@@ -1,4 +1,6 @@
 import { State } from '../state'
+import { Login } from '../services/auth.service'
+import { getFormInputs } from '../lib/getFormInputs'
 
 export class LoginComponent {
   constructor(container) {
@@ -24,7 +26,17 @@ export class LoginComponent {
       `
   }
 
-  addEventListeners(){
-    document.querySelector('#back').addEventListener('click', () => State.router.changeRoute('home'))
+  addEventListeners() {
+    document
+      .querySelector('#back')
+      .addEventListener('click', () => State.router.changeRoute('home'))
+    document.querySelector('#login-form').addEventListener('submit', event => {
+      event.preventDefault()
+      const data = getFormInputs(event.target)
+      Login(data).then(response => {
+        console.log(response) //TODO handle response
+        State['token'] = response.token // TODO handle error scenario
+      })
+    })
   }
 }
