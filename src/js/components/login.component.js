@@ -7,10 +7,15 @@ export class LoginComponent {
     this.container = container
   }
 
+  destroy() {
+    this.removeEventListeners()
+  }
+
   render() {
     if (State.token) return State.router.changeRoute('dashboard')
     this.container.innerHTML = this.markup()
     this.addEventListeners()
+    this.destroy = this.destroy
   }
 
   markup() {
@@ -29,12 +34,21 @@ export class LoginComponent {
   }
 
   addEventListeners() {
-    document.querySelector('#back').addEventListener('click', this.goHome)
-    document.querySelector('#login-form').addEventListener('submit', this.onLogin)
+    document.querySelector('#back').addEventListener('click', this.onBack)
+    document
+      .querySelector('#login-form')
+      .addEventListener('submit', this.onLogin)
   }
 
-  goHome() {
-    State.router.changeRoute('home')
+  removeEventListeners() {
+    document.querySelector('#back').removeEventListener('click', this.onBack)
+    document
+      .querySelector('#login-form')
+      .removeEventListener('submit', this.onLogin)
+  }
+
+  onBack() {
+    State.router.goToHome()
   }
 
   async onLogin(event) {
