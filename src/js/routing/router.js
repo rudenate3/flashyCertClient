@@ -6,6 +6,18 @@ export class Router {
     this.changeRoute('home')
   }
 
+  goToHome() {
+    this.changeRoute('home')
+  }
+
+  goToLogin() {
+    this.changeRoute('login')
+  }
+
+  goToDashboard() {
+    this.changeRoute('dashboard')
+  }
+
   changeRoute(newRoute) {
     this.activeRoute = null
     const componentToLoad = Routes[newRoute]
