@@ -6,6 +6,7 @@ export class HomeComponent {
   }
 
   render() {
+    if (State.token) return State.router.changeRoute('dashboard')
     this.container.innerHTML = this.markup()
     this.addEventListeners()
   }
