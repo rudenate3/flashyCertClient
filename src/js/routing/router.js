@@ -19,6 +19,7 @@ export class Router {
   }
 
   changeRoute(newRoute) {
+    if (this.activeRoute) this.activeRoute.destroy()
     this.activeRoute = null
     const componentToLoad = Routes[newRoute]
     this.activeRoute = new componentToLoad(PageObject.cardDiv)
