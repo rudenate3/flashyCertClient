@@ -1,4 +1,6 @@
 import { State } from '../../state'
+import { createExam } from '../../services/exam.service'
+import { getFormInputs } from '../../lib/getFormInputs'
 
 export class ExamCreateComponent {
   constructor(container) {
@@ -35,9 +37,15 @@ export class ExamCreateComponent {
     State.router.goToDashboard()
   }
 
-  onExamCreateClick(event) {
+  async onExamCreateClick (event) {
     event.preventDefault()
-    console.log('submitted')
+    const data = getFormInputs(event.target)
+    const response = await createExam(data, State.token)
+    if (response.status !== 201) {
+      document.querySelector('#messages').innerHTML = 'An Error has occurred'
+      return
+    }
+    State.router.goToDashboard()
   }
 
   addEventListeners() {
